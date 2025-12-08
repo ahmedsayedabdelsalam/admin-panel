@@ -1,56 +1,55 @@
-import { Container, Heading } from "@medusajs/ui"
-import { keepPreviousData } from "@tanstack/react-query"
-import { useTranslation } from "react-i18next"
+import { Container, Heading } from "@medusajs/ui";
 
-import { _DataTable } from "../../../../../components/table/data-table/data-table"
-import { useOrders } from "../../../../../hooks/api/orders"
-import { useOrderTableColumns } from "../../../../../hooks/table/columns/use-order-table-columns"
-import { useOrderTableFilters } from "./use-order-table-filters"
-import { useOrderTableQuery } from "../../../../../hooks/table/query/use-order-table-query"
-import { useDataTable } from "../../../../../hooks/use-data-table"
-import { useFeatureFlag } from "../../../../../providers/feature-flag-provider"
-import { ConfigurableOrderListTable } from "./configurable-order-list-table"
+import { keepPreviousData } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
 
-import { DEFAULT_FIELDS } from "../../const"
+import { OrderSet } from "@custom-types/order";
 
-const PAGE_SIZE = 20
+import { _DataTable } from "../../../../../components/table/data-table/data-table";
+import { useOrderSets } from "../../../../../hooks/api/orders";
+import { useOrderTableFilters } from "../../../../../hooks/table/filters/use-order-table-filters";
+import { useOrderSetTableColumns } from "../../../../../hooks/table/query/use-order-set-table-columns";
+import { useOrderTableQuery } from "../../../../../hooks/table/query/use-order-table-query";
+import { useDataTable } from "../../../../../hooks/use-data-table";
+import { DEFAULT_FIELDS } from "../../const";
+import { hasMultipleOrders } from "../../utils/is-order-set";
+
+const PAGE_SIZE = 20;
 
 export const OrderListTable = () => {
-  const { t } = useTranslation()
-  const isViewConfigEnabled = useFeatureFlag("view_configurations")
-
-  // If feature flag is enabled, use the new configurable table
-  if (isViewConfigEnabled) {
-    return <ConfigurableOrderListTable />
-  }
+  const { t } = useTranslation();
 
   const { searchParams, raw } = useOrderTableQuery({
     pageSize: PAGE_SIZE,
-  })
+  });
 
-  const { orders, count, isError, error, isLoading } = useOrders(
+  const { order_sets, count, isError, error, isLoading } = useOrderSets(
     {
       fields: DEFAULT_FIELDS,
       ...searchParams,
     },
     {
       placeholderData: keepPreviousData,
-    }
-  )
+    },
+  );
 
-  const filters = useOrderTableFilters()
-  const columns = useOrderTableColumns({})
+  const filters = useOrderTableFilters();
+  const columns = useOrderSetTableColumns();
 
-  const { table } = useDataTable({
-    data: orders ?? [],
+  const { table } = useDataTable<OrderSet>({
+    data: order_sets ?? [],
     columns,
     enablePagination: true,
     count,
     pageSize: PAGE_SIZE,
-  })
+    getRowId: (row) => row.id,
+    getSubRows: (row) =>
+      hasMultipleOrders(row) ? (row.orders as unknown as OrderSet[]) : [],
+    enableExpandableRows: true,
+  });
 
   if (isError) {
-    throw error
+    throw error;
   }
 
   return (
@@ -62,7 +61,19 @@ export const OrderListTable = () => {
         columns={columns}
         table={table}
         pagination
-        navigateTo={(row) => `/orders/${row.original.id}`}
+        navigateTo={(row) => {
+          const original = row.original;
+
+          if (row.depth > 0) {
+            return `/orders/${original.id}`;
+          }
+
+          if (!hasMultipleOrders(original)) {
+            return `/orders/${original.orders[0]?.id}`;
+          }
+
+          return "";
+        }}
         filters={filters}
         count={count}
         search
@@ -79,5 +90,5 @@ export const OrderListTable = () => {
         }}
       />
     </Container>
-  )
-}
+  );
+};
