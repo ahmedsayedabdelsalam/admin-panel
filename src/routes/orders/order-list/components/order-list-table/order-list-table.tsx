@@ -5,12 +5,14 @@ import { useTranslation } from "react-i18next";
 
 import { OrderSet } from "@custom-types/order";
 
-import { _DataTable } from "../../../../../components/table/data-table/data-table";
-import { useOrderSets } from "../../../../../hooks/api/orders";
-import { useOrderTableFilters } from "../../../../../hooks/table/filters/use-order-table-filters";
-import { useOrderSetTableColumns } from "../../../../../hooks/table/query/use-order-set-table-columns";
-import { useOrderTableQuery } from "../../../../../hooks/table/query/use-order-table-query";
-import { useDataTable } from "../../../../../hooks/use-data-table";
+import { _DataTable } from "@components/table/data-table/data-table";
+
+import { useOrderSets } from "@hooks/api/orders";
+import { useOrderSetTableColumns } from "@hooks/table/columns/use-order-set-table-columns";
+import { useOrderSetsTableFilters } from "@hooks/table/filters/use-order-sets-table-filters";
+import { useOrderSetsTableQuery } from "@hooks/table/query/use-order-sets-table-query";
+import { useDataTable } from "@hooks/use-data-table";
+
 import { DEFAULT_FIELDS } from "../../const";
 import { hasMultipleOrders } from "../../utils/is-order-set";
 
@@ -19,7 +21,7 @@ const PAGE_SIZE = 20;
 export const OrderListTable = () => {
   const { t } = useTranslation();
 
-  const { searchParams, raw } = useOrderTableQuery({
+  const { searchParams, raw } = useOrderSetsTableQuery({
     pageSize: PAGE_SIZE,
   });
 
@@ -33,7 +35,7 @@ export const OrderListTable = () => {
     },
   );
 
-  const filters = useOrderTableFilters();
+  const filters = useOrderSetsTableFilters();
   const columns = useOrderSetTableColumns();
 
   const { table } = useDataTable<OrderSet>({
@@ -80,7 +82,7 @@ export const OrderListTable = () => {
         isLoading={isLoading}
         pageSize={PAGE_SIZE}
         orderBy={[
-          { key: "display_id", label: t("orders.fields.displayId") },
+          { key: "display_id", label: t("fields.orderId") },
           { key: "created_at", label: t("fields.createdAt") },
           { key: "updated_at", label: t("fields.updatedAt") },
         ]}
