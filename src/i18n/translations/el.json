@@ -3,6 +3,8 @@
   "general": {
     "ascending": "Αύξουσα",
     "descending": "Φθίνουσα",
+    "expandAll": "Ανάπτυξη όλων των γραμμών",
+    "collapseAll": "Σύμπτυξη όλων των γραμμών",
     "add": "Προσθήκη",
     "start": "Έναρξη",
     "end": "Τέλος",
@@ -83,7 +85,6 @@
       "labels": {
         "key": "Κλειδί",
         "value": "Τιμή"
-        
       },
       "complexRow": {
         "label": "Ορισμένες γραμμές είναι απενεργοποιημένες",
@@ -994,7 +995,9 @@
     "orderCanceled": "Η παραγγελία ακυρώθηκε επιτυχώς.",
     "onDateFromSalesChannel": "{{date}} από {{salesChannel}}",
     "list": {
-      "noRecordsMessage": "Οι παραγγελίες σας θα εμφανίζονται εδώ."
+      "noRecordsMessage": "Οι παραγγελίες σας θα εμφανίζονται εδώ.",
+      "multipleVendors": "{{count}} πωλητές",
+      "vendorFallback": "Άγνωστος πωλητής"
     },
     "status": {
       "not_paid": "Μη πληρωμένο",

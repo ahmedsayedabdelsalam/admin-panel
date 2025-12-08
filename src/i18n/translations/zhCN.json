@@ -3,6 +3,8 @@
   "general": {
     "ascending": "升序",
     "descending": "降序",
+    "expandAll": "展开所有行",
+    "collapseAll": "折叠所有行",
     "add": "添加",
     "start": "开始",
     "end": "结束",
@@ -965,7 +967,7 @@
   "customerGroups": {
     "domain": "客户群组",
     "subtitle": "将客户组织成群组。群组可以有不同的促销和价格。",
-   "list": {
+    "list": {
       "empty": {
         "heading": "暂无客户组",
         "description": "当前没有可显示的客户组。"
@@ -1018,7 +1020,9 @@
     "orderCanceled": "订单取消成功！",
     "onDateFromSalesChannel": "{{date}} 来自 {{salesChannel}}",
     "list": {
-      "noRecordsMessage": "您的订单将显示在这里。"
+      "noRecordsMessage": "您的订单将显示在这里。",
+      "multipleVendors": "{{count}}个供应商",
+      "vendorFallback": "未知供应商"
     },
     "status": {
       "not_paid": "未支付",
@@ -1997,7 +2001,7 @@
     "toasts": {
       "promotionCreateSuccess": "促销活动 ({{code}}) 创建成功。"
     },
-    "create": { },
+    "create": {},
     "edit": {
       "title": "编辑促销详情",
       "rules": {

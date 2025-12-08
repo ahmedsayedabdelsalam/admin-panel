@@ -3,6 +3,8 @@
   "general": {
     "ascending": "Өсөх",
     "descending": "Буурах",
+    "expandAll": "Бүх мөрүүдийг дэлгэх",
+    "collapseAll": "Бүх мөрүүдийг хураах",
     "add": "Нэмэх",
     "start": "Эхлэх",
     "end": "Дуусах",
@@ -975,7 +977,9 @@
     "orderCanceled": "Захиалга амжилттай цуцлагдлаа",
     "onDateFromSalesChannel": "{{date}} нь {{salesChannel}}-ээс",
     "list": {
-      "noRecordsMessage": "Таны захиалгууд энд харагдана."
+      "noRecordsMessage": "Таны захиалгууд энд харагдана.",
+      "multipleVendors": "{{count}} борлуулагч",
+      "vendorFallback": "Тодорхойгүй борлуулагч"
     },
     "status": {
       "not_paid": "Төлөгдөөгүй",
@@ -1398,7 +1402,7 @@
       "refundableAmount": "Буцаах боломжтой хэмжээ",
       "returnableQuantity": "Буцаах боломжтой хэмжээ"
     }
-  },    
+  },
   "draftOrders": {
     "domain": "Ноорог захиалгууд",
     "deleteWarning": "Та {{id}} ноорог захиалгыг устгах гэж байна. Энэ үйлдлийг буцаах боломжгүй.",
@@ -2242,7 +2246,7 @@
         "attribute": "Үйлчлүүлэгчдийн бүлгүүд"
       }
     }
-  },  
+  },
   "profile": {
     "domain": "Профайл",
     "manageYourProfileDetails": "Профайлын дэлгэрэнгүй мэдээллийг удирдах.",
@@ -2312,7 +2316,7 @@
       "currenciesRemoved": "Дэлгүүрээс валютууд амжилттай устгагдлаа",
       "updatedTaxInclusivitySuccessfully": "Татвар багтсан үнийг амжилттай шинэчлэгдлээ"
     }
-  },  
+  },
   "regions": {
     "domain": "Бүсүүд",
     "subtitle": "Бүс гэдэг нь та бүтээгдэхүүнээ борлуулдаг газар юм. Энэ нь олон улсыг хамарч, өөр өөр татварын хувь, үйлчилгээ үзүүлэгчид, валюттай байж болно.",
@@ -2415,7 +2419,7 @@
       "productTypeOverridesHeader": "Бүтээгдэхүүний төрлүүд",
       "shippingOptionOverridesHeader": "Хүргэлтийн сонголтууд"
     }
-  },  
+  },
   "locations": {
     "domain": "Байршлууд",
     "editLocation": "Байршлыг засах",
@@ -2546,7 +2550,7 @@
       "revokedAtLabel": "Цуцлагдсан",
       "createdByLabel": "Үүсгэсэн"
     }
-  },  
+  },
   "returnReasons": {
     "domain": "Буцаалтын Шалтгаанууд",
     "subtitle": "Буцаагдсан зүйлсийн шалтгааныг удирдах.",
@@ -2671,7 +2675,7 @@
         "timeout": "Цаг хэтрэх"
       }
     }
-  },  
+  },
   "productTypes": {
     "domain": "Бүтээгдэхүүний Төрлүүд",
     "subtitle": "Бүтээгдэхүүнээ төрөлд ангилах.",
@@ -2921,5 +2925,5 @@
     "minutes_other": "Минут",
     "seconds_one": "Секунд",
     "seconds_other": "Секунд"
-  }  
+  }
 }
